@@ -64,7 +64,7 @@ angular.module('formly.render')
 		link: function fieldLink($scope, $element, $attr) {
 			var template = $scope.options.template || formlyConfig.getTemplate($scope.options.type);
 			if (template) {
-				setElementTemplate(template);
+				setElementTemplate($templateCache.get(template));
 			} else {
 				var templateUrl = $scope.options.templateUrl || formlyConfig.getTemplateUrl($scope.options.type);
 				if (templateUrl) {
@@ -193,7 +193,7 @@ angular.module('formly.render').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('fields/formly-field-select.html',
-    "<div class=form-group><label for={{id}}>{{options.label || 'Select'}} {{options.required ? '*' : ''}}</label><select class=form-control id={{id}} aria-describedby={{id}}_description ng-model=value ng-required=options.required ng-disabled=options.disabled ng-options=\"option.value as option.name group by option.group for option in options.options\"></select><p id={{id}}_description class=help-block ng-if=options.description>{{options.description}}</p></div>"
+    "<div class=form-group><label for={{id}}>{{options.label || 'Select'}} {{options.required ? '*' : ''}}</label><select class=form-control id={{id}} aria-describedby={{id}}_description ng-model=value ng-required=options.required ng-disabled=options.disabled ng-init=\"value = options.default\" ng-options=\"option.value as option.name group by option.group for option in options.options\"></select><p id={{id}}_description class=help-block ng-if=options.description>{{options.description}}</p></div>"
   );
 
 
