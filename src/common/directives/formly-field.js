@@ -35,7 +35,9 @@ angular.module('formly.render')
 			}
 		},
 		controller: function fieldController($scope) {
-			$scope.options = $scope.optionsData();
+            $scope._ = _;
+
+            $scope.options = $scope.optionsData();
 			var type = $scope.options.type;
 			if (!type && $scope.options.template) {
 				type = 'template';
